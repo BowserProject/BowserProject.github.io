@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BowserBrowser</title>
+    <link rel="icon" href="icon.ico">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>BowserBrowser</h1>
+        <nav>
+            <ul>
+                <!-- <li><a href="#features">Features</a></li> -->
+                <li><a href="download.html" class="btn">Download</a></li>
+                <!-- <li><a href="#contact">Contact</a></li> -->
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+    <section id="features">
+        <h2>Features</h2>
+        <div class="carousel" aria-label="Features carousel">
+                <div class="carousel-track">
+                <div class="carousel-item active bg-fast">Fast, easy and lightweight browsing experience</div>
+                <div class="carousel-item bg-chromium">Built on a powerful Chromium engine</div>
+                <div class="carousel-item bg-ui">Written in C# with modern UI support</div>
+                <div class="carousel-item bg-github">Open-source code on GitHub</div>
+            </div>
+            <div class="carousel-dots">
+                <button class="carousel-dot active" data-index="0" aria-label="Feature 1"></button>
+                <button class="carousel-dot" data-index="1" aria-label="Feature 2"></button>
+                <button class="carousel-dot" data-index="2" aria-label="Feature 3"></button>
+                <button class="carousel-dot" data-index="3" aria-label="Feature 4"></button>
+            </div>
+        </div>
+    </section>
+
+    <!-- <section id="download">
+        <h2>Download BowserBrowser</h2>
+        <p>Get the latest version of BowserBrowser:</p>
+        <p><a href="https://github.com/pablo-chitaksa/BowserBrowser/releases/latest/download/BowserInstaller-Windows.exe" class="download-btn" target="_blank" rel="noopener" download="BowserInstaller-Windows.exe">Download for Windows</a></p>
+        <p>...other OS will be available soon</p>
+    </section> -->
+    </main>
+
+    <script>
+        const track = document.querySelector('.carousel-track');
+        const items = Array.from(track.children);
+        const dots = document.querySelectorAll('.carousel-dot');
+        let currentIndex = 0;
+        const transitionDuration = 500;
+        const bgImages = ['fast.png', 'chromium.png', 'ui.png', 'github.png'];
+
+        const updateBackgroundImage = (index) => {
+            document.documentElement.style.setProperty('--bg-image', `url('${bgImages[index]}')`);
+        };
+
+        const slideTo = index => {
+            if (index === currentIndex) return;
+            const previousItem = items[currentIndex];
+            previousItem.classList.remove('active');
+            previousItem.classList.add('previous');
+            dots[currentIndex].classList.remove('active');
+
+            currentIndex = index;
+            const nextItem = items[currentIndex];
+            nextItem.classList.add('active');
+            dots[currentIndex].classList.add('active');
+            updateBackgroundImage(index);
+
+            setTimeout(() => {
+                previousItem.classList.remove('previous');
+            }, transitionDuration);
+        };
+
+        dots.forEach(dot => dot.addEventListener('click', event => {
+            slideTo(Number(event.currentTarget.dataset.index));
+        }));
+
+        updateBackgroundImage(0);
+        setInterval(() => {
+            const nextIndex = (currentIndex + 1) % items.length;
+            slideTo(nextIndex);
+        }, 4500);
+    </script>
+</body>
+</html>

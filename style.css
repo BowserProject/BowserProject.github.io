@@ -1,0 +1,166 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+:root {
+	--bg-image: url('fast.png');
+}
+
+html, body {
+	height: 100%;
+ 	margin: 0;
+ 	background-color: #000000;
+ 	color: #e6e6e6;
+ 	font-family: 'Roboto', 'Roboto Sans', 'Helvetica Neue', Arial, sans-serif;
+ 	-webkit-font-smoothing: antialiased;
+ 	-moz-osx-font-smoothing: grayscale;
+}
+
+body {
+	position: relative;
+	overflow-x: hidden;
+	background-color: #000000;
+}
+
+body::after {
+	content: '';
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: radial-gradient(ellipse at center, rgba(0,0,0,0) 30%, rgba(0,0,0,0.6) 100%);
+	z-index: 5;
+	pointer-events: none;
+}
+
+a {
+	color: #61dafb;
+}
+
+code, pre, kbd, samp {
+ 	font-family: 'Roboto', 'Roboto Sans', 'Helvetica Neue', Arial, sans-serif;
+}
+
+header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 1rem 2rem;
+	border-bottom: 1px solid rgba(255,255,255,0.06);
+	position: relative;
+	z-index: 10;
+}
+
+nav ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	display: flex;
+	gap: 1rem;
+	align-items: center;
+}
+
+nav a {
+	color: inherit;
+	text-decoration: none;
+	padding: 0.35rem 0.6rem;
+}
+
+.btn, .download-btn {
+	background: #1f6feb;
+	color: #ffffff;
+	border-radius: 6px;
+	padding: 0.45rem 0.8rem;
+	text-decoration: none;
+	display: inline-block;
+}
+
+.btn:hover, .download-btn:hover {
+	background: #1662c4;
+}
+
+main {
+	position: relative;
+	padding: 2rem;
+	background-image: linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.75)), var(--bg-image);
+	background-size: 100%, contain;
+	background-position: center, center;
+	background-repeat: repeat, no-repeat;
+	background-attachment: fixed;
+	transition: --bg-image 0.6s ease;
+	z-index: 10;
+	box-shadow: inset 0 0 80px rgba(100,150,255,0.15), inset 0 0 150px rgba(0,0,0,0.5);
+}
+
+
+.carousel {
+	max-width: 100%;
+	width: 100%;
+	margin: 1.5rem 0;
+	padding: 0;
+	background: transparent;
+}
+
+.carousel-track {
+	position: relative;
+	min-height: 260px;
+	overflow: hidden;
+}
+
+.carousel-item {
+	position: absolute;
+	inset: 0;
+	opacity: 0;
+	transform: translateY(20px);
+	transition: opacity 0.6s ease, transform 0.6s ease;
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+	text-align: left;
+	font-size: 1.9rem;
+	line-height: 1.6;
+	padding: 2.5rem 3rem;
+	color: inherit;
+	box-sizing: border-box;
+}
+
+.carousel-item.active {
+	opacity: 1;
+	transform: translateY(0);
+}
+
+.carousel-item.previous {
+	opacity: 0;
+	transform: translateY(-20px);
+}
+
+.carousel-dots {
+	display: none;
+}
+
+@media (max-width: 700px) {
+	.carousel-track { min-height: 180px; }
+
+	.carousel-item {
+		padding: 1rem;
+		justify-content: center;
+		text-align: center;
+		font-size: 1.25rem;
+	}
+}
+
+.carousel-dot {
+	width: 0.8rem;
+	height: 0.8rem;
+	border-radius: 50%;
+	border: none;
+	background: rgba(255, 255, 255, 0.2);
+	cursor: pointer;
+	transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.carousel-dot.active,
+.carousel-dot:hover {
+	background: #1f6feb;
+	transform: scale(1.15);
+}
+
