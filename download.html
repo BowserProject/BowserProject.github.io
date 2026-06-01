@@ -27,7 +27,7 @@
                 <div class="download-info">
                     <h3>BowserBrowser Installer</h3>
                     <p class="version">Latest Release</p>
-                    <a href="https://github.com/BowserProject/BowserBrowser/releases/latest/download/BowserInstaller-Windows.exe" class="download-btn" download="BowserInstaller-Windows.exe">
+                    <a id="downloadBtn" href="https://github.com/BowserProject/BowserBrowser/releases/latest/download/BowserInstaller-Windows.exe" class="download-btn" target="_blank" rel="noopener" download="BowserInstaller-Windows.exe">
                         Download for Windows
                     </a>
                 </div>
@@ -54,5 +54,15 @@
             
         </section>
     </main>
+    <script>
+        const downloadBtn = document.getElementById('downloadBtn');
+        if (downloadBtn) {
+            downloadBtn.addEventListener('click', () => {
+                setTimeout(() => {
+                    window.location.href = 'whats-next.html';
+                }, 600);
+            });
+        }
+    </script>
 </body>
 </html>
